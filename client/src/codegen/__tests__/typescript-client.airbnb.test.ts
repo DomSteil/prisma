@@ -1,21 +1,19 @@
 import * as fs from 'fs'
 import * as path from 'path'
 import { buildSchema } from 'graphql'
-import { GoGenerator } from './go-client'
+import { TypescriptGenerator } from '../typescript-client'
 import { test } from 'ava'
 
 const typeDefs = fs.readFileSync(
-  path.join(__dirname, '../../src/codegen/fixtures/schema.graphql'),
+  path.join(__dirname, '../../src/codegen/fixtures/airbnb.graphql'),
   'utf-8',
 )
-test('go generator', t => {
+test('typescript generator', t => {
   const schema = buildSchema(typeDefs)
-  const generator = new GoGenerator({
+  const generator = new TypescriptGenerator({
     schema,
     internalTypes: [],
   })
-  const result = generator.render({
-    endpoint: 'http://localhost:4466/test/test',
-  })
+  const result = generator.render()
   t.snapshot(result)
 })

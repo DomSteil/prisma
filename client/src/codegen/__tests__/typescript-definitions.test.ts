@@ -1,16 +1,16 @@
 import * as fs from 'fs'
 import * as path from 'path'
 import { buildSchema } from 'graphql'
-import { TypescriptGenerator } from './typescript-client'
+import { TypescriptDefinitionsGenerator } from '../typescript-definitions'
 import { test } from 'ava'
 
 const typeDefs = fs.readFileSync(
-  path.join(__dirname, '../../src/codegen/fixtures/airbnb.graphql'),
+  path.join(__dirname, '../../src/codegen/fixtures/schema.graphql'),
   'utf-8',
 )
-test('typescript generator', t => {
+test('typescript definitions generator', t => {
   const schema = buildSchema(typeDefs)
-  const generator = new TypescriptGenerator({
+  const generator = new TypescriptDefinitionsGenerator({
     schema,
     internalTypes: [],
   })

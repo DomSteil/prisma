@@ -1,6 +1,6 @@
 import * as path from 'path'
 import * as fs from 'fs'
-import { testTSCompilation, testFlowCompilation } from './utils/compile'
+import { testTSCompilation, testFlowCompilation } from '../utils/compile'
 import test from 'ava'
 
 const typeDefs = fs.readFileSync(
